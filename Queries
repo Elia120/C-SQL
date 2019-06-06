@@ -1,0 +1,21 @@
+CREATE
+1. AddUser
+2. AddDoor
+3. AddCredential
+4. AddRequierdCredential
+5. AddUserCredential
+
+READ
+1. GetUserID
+2. GetDoorID
+3. CheckforCredentialUser
+
+UPDATE
+1. ChangeUserCredentialDeatails
+2. ChangeDoorPin
+
+DELETE
+1. DeleteUser
+2. DeleteDoor
+3. DeleteRequierdCredential
+4. DeleteCredentialUser
