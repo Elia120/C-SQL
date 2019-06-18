@@ -20,6 +20,7 @@ CREATE TABLE UsersCredentials (
     UsersCredentialsID int IDENTITY(1,1) PRIMARY KEY,
     UsersID int NOT NULL ,
     CredentialsID int NOT NULL,
+	Value varchar(255) NOT NULL,
 	FOREIGN KEY (UsersID) REFERENCES Users(UsersID),
 	FOREIGN KEY (CredentialsID) REFERENCES [Credentials](CredentialsID)
 );
@@ -27,6 +28,7 @@ CREATE TABLE  DoorsCredentials(
     DoorsCredentialsID int IDENTITY(1,1) PRIMARY KEY,
     DoorsID int NOT NULL,
     CredentialsID int NOT NULL,
+	Value varchar(255) NOT NULL,
 	FOREIGN KEY (DoorsID) REFERENCES Doors(DoorsID),
 	FOREIGN KEY (CredentialsID) REFERENCES [Credentials](CredentialsID)
 );
