@@ -1,0 +1,427 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SSESModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Credentials">
+          <Key>
+            <PropertyRef Name="CredentialsID" />
+          </Key>
+          <Property Name="CredentialsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Doors">
+          <Key>
+            <PropertyRef Name="DoorsID" />
+          </Key>
+          <Property Name="DoorsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="AccessLevel" Type="int" />
+        </EntityType>
+        <EntityType Name="DoorsCredentials">
+          <Key>
+            <PropertyRef Name="DoorsCredentialsID" />
+          </Key>
+          <Property Name="DoorsCredentialsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoorsID" Type="int" Nullable="false" />
+          <Property Name="CredentialsID" Type="int" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="DoorsDeatails">
+          <Key>
+            <PropertyRef Name="DoorsDeatailsID" />
+          </Key>
+          <Property Name="DoorsDeatailsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DoorsID" Type="int" Nullable="false" />
+          <Property Name="UsersID" Type="int" />
+          <Property Name="AccessDate" Type="datetime" />
+          <Property Name="AccessGranted" Type="bit" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UsersID" />
+          </Key>
+          <Property Name="UsersID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="DOB" Type="date" Nullable="false" />
+          <Property Name="AccessLevel" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UsersCredentials">
+          <Key>
+            <PropertyRef Name="UsersCredentialsID" />
+          </Key>
+          <Property Name="UsersCredentialsID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UsersID" Type="int" Nullable="false" />
+          <Property Name="CredentialsID" Type="int" Nullable="false" />
+          <Property Name="Value" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__DoorsCred__Crede__5BE2A6F2">
+          <End Role="Credentials" Type="Self.Credentials" Multiplicity="1" />
+          <End Role="DoorsCredentials" Type="Self.DoorsCredentials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credentials">
+              <PropertyRef Name="CredentialsID" />
+            </Principal>
+            <Dependent Role="DoorsCredentials">
+              <PropertyRef Name="CredentialsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DoorsCred__Doors__5AEE82B9">
+          <End Role="Doors" Type="Self.Doors" Multiplicity="1" />
+          <End Role="DoorsCredentials" Type="Self.DoorsCredentials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doors">
+              <PropertyRef Name="DoorsID" />
+            </Principal>
+            <Dependent Role="DoorsCredentials">
+              <PropertyRef Name="DoorsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DoorsDeat__Doors__5812160E">
+          <End Role="Doors" Type="Self.Doors" Multiplicity="1" />
+          <End Role="DoorsDeatails" Type="Self.DoorsDeatails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doors">
+              <PropertyRef Name="DoorsID" />
+            </Principal>
+            <Dependent Role="DoorsDeatails">
+              <PropertyRef Name="DoorsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DoorsDeat__Users__571DF1D5">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="DoorsDeatails" Type="Self.DoorsDeatails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersID" />
+            </Principal>
+            <Dependent Role="DoorsDeatails">
+              <PropertyRef Name="UsersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersCred__Crede__5070F446">
+          <End Role="Credentials" Type="Self.Credentials" Multiplicity="1" />
+          <End Role="UsersCredentials" Type="Self.UsersCredentials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credentials">
+              <PropertyRef Name="CredentialsID" />
+            </Principal>
+            <Dependent Role="UsersCredentials">
+              <PropertyRef Name="CredentialsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersCred__Users__4F7CD00D">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="UsersCredentials" Type="Self.UsersCredentials" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersID" />
+            </Principal>
+            <Dependent Role="UsersCredentials">
+              <PropertyRef Name="UsersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SSESModelStoreContainer">
+          <EntitySet Name="Credentials" EntityType="Self.Credentials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Doors" EntityType="Self.Doors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoorsCredentials" EntityType="Self.DoorsCredentials" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DoorsDeatails" EntityType="Self.DoorsDeatails" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsersCredentials" EntityType="Self.UsersCredentials" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__DoorsCred__Crede__5BE2A6F2" Association="Self.FK__DoorsCred__Crede__5BE2A6F2">
+            <End Role="Credentials" EntitySet="Credentials" />
+            <End Role="DoorsCredentials" EntitySet="DoorsCredentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DoorsCred__Doors__5AEE82B9" Association="Self.FK__DoorsCred__Doors__5AEE82B9">
+            <End Role="Doors" EntitySet="Doors" />
+            <End Role="DoorsCredentials" EntitySet="DoorsCredentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DoorsDeat__Doors__5812160E" Association="Self.FK__DoorsDeat__Doors__5812160E">
+            <End Role="Doors" EntitySet="Doors" />
+            <End Role="DoorsDeatails" EntitySet="DoorsDeatails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DoorsDeat__Users__571DF1D5" Association="Self.FK__DoorsDeat__Users__571DF1D5">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DoorsDeatails" EntitySet="DoorsDeatails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersCred__Crede__5070F446" Association="Self.FK__UsersCred__Crede__5070F446">
+            <End Role="Credentials" EntitySet="Credentials" />
+            <End Role="UsersCredentials" EntitySet="UsersCredentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersCred__Users__4F7CD00D" Association="Self.FK__UsersCred__Users__4F7CD00D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersCredentials" EntitySet="UsersCredentials" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SSESModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Credential">
+          <Key>
+            <PropertyRef Name="CredentialsID" />
+          </Key>
+          <Property Name="CredentialsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="DoorsCredentials" Relationship="Self.FK__DoorsCred__Crede__5BE2A6F2" FromRole="Credentials" ToRole="DoorsCredentials" />
+          <NavigationProperty Name="UsersCredentials" Relationship="Self.FK__UsersCred__Crede__5070F446" FromRole="Credentials" ToRole="UsersCredentials" />
+        </EntityType>
+        <EntityType Name="Door">
+          <Key>
+            <PropertyRef Name="DoorsID" />
+          </Key>
+          <Property Name="DoorsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AccessLevel" Type="Int32" />
+          <NavigationProperty Name="DoorsCredentials" Relationship="Self.FK__DoorsCred__Doors__5AEE82B9" FromRole="Doors" ToRole="DoorsCredentials" />
+          <NavigationProperty Name="DoorsDeatails" Relationship="Self.FK__DoorsDeat__Doors__5812160E" FromRole="Doors" ToRole="DoorsDeatails" />
+        </EntityType>
+        <EntityType Name="DoorsCredential">
+          <Key>
+            <PropertyRef Name="DoorsCredentialsID" />
+          </Key>
+          <Property Name="DoorsCredentialsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoorsID" Type="Int32" Nullable="false" />
+          <Property Name="CredentialsID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Credential" Relationship="Self.FK__DoorsCred__Crede__5BE2A6F2" FromRole="DoorsCredentials" ToRole="Credentials" />
+          <NavigationProperty Name="Door" Relationship="Self.FK__DoorsCred__Doors__5AEE82B9" FromRole="DoorsCredentials" ToRole="Doors" />
+        </EntityType>
+        <EntityType Name="DoorsDeatail">
+          <Key>
+            <PropertyRef Name="DoorsDeatailsID" />
+          </Key>
+          <Property Name="DoorsDeatailsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DoorsID" Type="Int32" Nullable="false" />
+          <Property Name="UsersID" Type="Int32" />
+          <Property Name="AccessDate" Type="DateTime" Precision="3" />
+          <Property Name="AccessGranted" Type="Boolean" />
+          <NavigationProperty Name="Door" Relationship="Self.FK__DoorsDeat__Doors__5812160E" FromRole="DoorsDeatails" ToRole="Doors" />
+          <NavigationProperty Name="User" Relationship="Self.FK__DoorsDeat__Users__571DF1D5" FromRole="DoorsDeatails" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UsersID" />
+          </Key>
+          <Property Name="UsersID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LastName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DOB" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="AccessLevel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="DoorsDeatails" Relationship="Self.FK__DoorsDeat__Users__571DF1D5" FromRole="Users" ToRole="DoorsDeatails" />
+          <NavigationProperty Name="UsersCredentials" Relationship="Self.FK__UsersCred__Users__4F7CD00D" FromRole="Users" ToRole="UsersCredentials" />
+        </EntityType>
+        <EntityType Name="UsersCredential">
+          <Key>
+            <PropertyRef Name="UsersCredentialsID" />
+          </Key>
+          <Property Name="UsersCredentialsID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UsersID" Type="Int32" Nullable="false" />
+          <Property Name="CredentialsID" Type="Int32" Nullable="false" />
+          <Property Name="Value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Credential" Relationship="Self.FK__UsersCred__Crede__5070F446" FromRole="UsersCredentials" ToRole="Credentials" />
+          <NavigationProperty Name="User" Relationship="Self.FK__UsersCred__Users__4F7CD00D" FromRole="UsersCredentials" ToRole="Users" />
+        </EntityType>
+        <Association Name="FK__DoorsCred__Crede__5BE2A6F2">
+          <End Role="Credentials" Type="Self.Credential" Multiplicity="1" />
+          <End Role="DoorsCredentials" Type="Self.DoorsCredential" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credentials">
+              <PropertyRef Name="CredentialsID" />
+            </Principal>
+            <Dependent Role="DoorsCredentials">
+              <PropertyRef Name="CredentialsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersCred__Crede__5070F446">
+          <End Role="Credentials" Type="Self.Credential" Multiplicity="1" />
+          <End Role="UsersCredentials" Type="Self.UsersCredential" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Credentials">
+              <PropertyRef Name="CredentialsID" />
+            </Principal>
+            <Dependent Role="UsersCredentials">
+              <PropertyRef Name="CredentialsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DoorsCred__Doors__5AEE82B9">
+          <End Role="Doors" Type="Self.Door" Multiplicity="1" />
+          <End Role="DoorsCredentials" Type="Self.DoorsCredential" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doors">
+              <PropertyRef Name="DoorsID" />
+            </Principal>
+            <Dependent Role="DoorsCredentials">
+              <PropertyRef Name="DoorsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DoorsDeat__Doors__5812160E">
+          <End Role="Doors" Type="Self.Door" Multiplicity="1" />
+          <End Role="DoorsDeatails" Type="Self.DoorsDeatail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doors">
+              <PropertyRef Name="DoorsID" />
+            </Principal>
+            <Dependent Role="DoorsDeatails">
+              <PropertyRef Name="DoorsID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DoorsDeat__Users__571DF1D5">
+          <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+          <End Role="DoorsDeatails" Type="Self.DoorsDeatail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersID" />
+            </Principal>
+            <Dependent Role="DoorsDeatails">
+              <PropertyRef Name="UsersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UsersCred__Users__4F7CD00D">
+          <End Role="Users" Type="Self.User" Multiplicity="1" />
+          <End Role="UsersCredentials" Type="Self.UsersCredential" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="UsersID" />
+            </Principal>
+            <Dependent Role="UsersCredentials">
+              <PropertyRef Name="UsersID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SSESEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Credentials" EntityType="Self.Credential" />
+          <EntitySet Name="Doors" EntityType="Self.Door" />
+          <EntitySet Name="DoorsCredentials" EntityType="Self.DoorsCredential" />
+          <EntitySet Name="DoorsDeatails" EntityType="Self.DoorsDeatail" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UsersCredentials" EntityType="Self.UsersCredential" />
+          <AssociationSet Name="FK__DoorsCred__Crede__5BE2A6F2" Association="Self.FK__DoorsCred__Crede__5BE2A6F2">
+            <End Role="Credentials" EntitySet="Credentials" />
+            <End Role="DoorsCredentials" EntitySet="DoorsCredentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersCred__Crede__5070F446" Association="Self.FK__UsersCred__Crede__5070F446">
+            <End Role="Credentials" EntitySet="Credentials" />
+            <End Role="UsersCredentials" EntitySet="UsersCredentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DoorsCred__Doors__5AEE82B9" Association="Self.FK__DoorsCred__Doors__5AEE82B9">
+            <End Role="Doors" EntitySet="Doors" />
+            <End Role="DoorsCredentials" EntitySet="DoorsCredentials" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DoorsDeat__Doors__5812160E" Association="Self.FK__DoorsDeat__Doors__5812160E">
+            <End Role="Doors" EntitySet="Doors" />
+            <End Role="DoorsDeatails" EntitySet="DoorsDeatails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DoorsDeat__Users__571DF1D5" Association="Self.FK__DoorsDeat__Users__571DF1D5">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="DoorsDeatails" EntitySet="DoorsDeatails" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UsersCred__Users__4F7CD00D" Association="Self.FK__UsersCred__Users__4F7CD00D">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UsersCredentials" EntitySet="UsersCredentials" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SSESModelStoreContainer" CdmEntityContainer="SSESEntities">
+          <EntitySetMapping Name="Credentials">
+            <EntityTypeMapping TypeName="SSESModel.Credential">
+              <MappingFragment StoreEntitySet="Credentials">
+                <ScalarProperty Name="CredentialsID" ColumnName="CredentialsID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Doors">
+            <EntityTypeMapping TypeName="SSESModel.Door">
+              <MappingFragment StoreEntitySet="Doors">
+                <ScalarProperty Name="DoorsID" ColumnName="DoorsID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoorsCredentials">
+            <EntityTypeMapping TypeName="SSESModel.DoorsCredential">
+              <MappingFragment StoreEntitySet="DoorsCredentials">
+                <ScalarProperty Name="DoorsCredentialsID" ColumnName="DoorsCredentialsID" />
+                <ScalarProperty Name="DoorsID" ColumnName="DoorsID" />
+                <ScalarProperty Name="CredentialsID" ColumnName="CredentialsID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DoorsDeatails">
+            <EntityTypeMapping TypeName="SSESModel.DoorsDeatail">
+              <MappingFragment StoreEntitySet="DoorsDeatails">
+                <ScalarProperty Name="DoorsDeatailsID" ColumnName="DoorsDeatailsID" />
+                <ScalarProperty Name="DoorsID" ColumnName="DoorsID" />
+                <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+                <ScalarProperty Name="AccessDate" ColumnName="AccessDate" />
+                <ScalarProperty Name="AccessGranted" ColumnName="AccessGranted" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="SSESModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UsersCredentials">
+            <EntityTypeMapping TypeName="SSESModel.UsersCredential">
+              <MappingFragment StoreEntitySet="UsersCredentials">
+                <ScalarProperty Name="UsersCredentialsID" ColumnName="UsersCredentialsID" />
+                <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+                <ScalarProperty Name="CredentialsID" ColumnName="CredentialsID" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

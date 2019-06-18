@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SSESModelStoreContainer" CdmEntityContainer="SSESEntities">
+    <EntitySetMapping Name="Credentials">
+      <EntityTypeMapping TypeName="SSESModel.Credential">
+        <MappingFragment StoreEntitySet="Credentials">
+          <ScalarProperty Name="CredentialsID" ColumnName="CredentialsID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Doors">
+      <EntityTypeMapping TypeName="SSESModel.Door">
+        <MappingFragment StoreEntitySet="Doors">
+          <ScalarProperty Name="DoorsID" ColumnName="DoorsID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoorsCredentials">
+      <EntityTypeMapping TypeName="SSESModel.DoorsCredential">
+        <MappingFragment StoreEntitySet="DoorsCredentials">
+          <ScalarProperty Name="DoorsCredentialsID" ColumnName="DoorsCredentialsID" />
+          <ScalarProperty Name="DoorsID" ColumnName="DoorsID" />
+          <ScalarProperty Name="CredentialsID" ColumnName="CredentialsID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DoorsDeatails">
+      <EntityTypeMapping TypeName="SSESModel.DoorsDeatail">
+        <MappingFragment StoreEntitySet="DoorsDeatails">
+          <ScalarProperty Name="DoorsDeatailsID" ColumnName="DoorsDeatailsID" />
+          <ScalarProperty Name="DoorsID" ColumnName="DoorsID" />
+          <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+          <ScalarProperty Name="AccessDate" ColumnName="AccessDate" />
+          <ScalarProperty Name="AccessGranted" ColumnName="AccessGranted" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="SSESModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="DOB" ColumnName="DOB" />
+          <ScalarProperty Name="AccessLevel" ColumnName="AccessLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UsersCredentials">
+      <EntityTypeMapping TypeName="SSESModel.UsersCredential">
+        <MappingFragment StoreEntitySet="UsersCredentials">
+          <ScalarProperty Name="UsersCredentialsID" ColumnName="UsersCredentialsID" />
+          <ScalarProperty Name="UsersID" ColumnName="UsersID" />
+          <ScalarProperty Name="CredentialsID" ColumnName="CredentialsID" />
+          <ScalarProperty Name="Value" ColumnName="Value" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
