@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2ddceac39b5c405880fef924d7fc0b98" Name="Diagram1">
+        <EntityTypeShape EntityType="SSESModel.Credential" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSESModel.Door" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSESModel.DoorsCredential" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSESModel.DoorsDeatail" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSESModel.User" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="SSESModel.UsersCredential" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="SSESModel.FK__DoorsCred__Crede__5BE2A6F2" ManuallyRouted="false" />
+        <AssociationConnector Association="SSESModel.FK__UsersCred__Crede__5070F446" ManuallyRouted="false" />
+        <AssociationConnector Association="SSESModel.FK__DoorsCred__Doors__5AEE82B9" ManuallyRouted="false" />
+        <AssociationConnector Association="SSESModel.FK__DoorsDeat__Doors__5812160E" ManuallyRouted="false" />
+        <AssociationConnector Association="SSESModel.FK__DoorsDeat__Users__571DF1D5" ManuallyRouted="false" />
+        <AssociationConnector Association="SSESModel.FK__UsersCred__Users__4F7CD00D" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
