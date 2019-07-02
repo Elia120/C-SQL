@@ -1,0 +1,11 @@
+C:\Users\Deborah\source\repos\SSES3\SSES3\bin\Debug\SSES3.exe.config
+C:\Users\Deborah\source\repos\SSES3\SSES3\bin\Debug\SSES3.exe
+C:\Users\Deborah\source\repos\SSES3\SSES3\bin\Debug\SSES3.pdb
+C:\Users\Deborah\source\repos\SSES3\SSES3\bin\Debug\EntityFramework.dll
+C:\Users\Deborah\source\repos\SSES3\SSES3\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Deborah\source\repos\SSES3\SSES3\bin\Debug\EntityFramework.xml
+C:\Users\Deborah\source\repos\SSES3\SSES3\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Deborah\source\repos\SSES3\SSES3\obj\Debug\SSES3.csprojResolveAssemblyReference.cache
+C:\Users\Deborah\source\repos\SSES3\SSES3\obj\Debug\SSES3.csproj.CoreCompileInputs.cache
+C:\Users\Deborah\source\repos\SSES3\SSES3\obj\Debug\SSES3.exe
+C:\Users\Deborah\source\repos\SSES3\SSES3\obj\Debug\SSES3.pdb
